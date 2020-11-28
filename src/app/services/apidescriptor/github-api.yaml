@@ -1,0 +1,148 @@
+swagger: "2.0"
+info:
+  description: "API https://developer.github.com/v3/"
+  version: "1.0.0"
+  title: "github api"
+  contact:
+    email: team@github.com
+  license:
+    name: Standard EULA
+    url: 'github'
+host: api.github.com
+basePath: /users
+tags:
+- name: "basicUserInfo"
+  description: "Informacoes basica do user"
+schemes:
+- "https"
+paths:
+  /{USER_GITHUB}:
+    get:
+      tags:
+      - "basicUserInfo"
+      summary: "info usuario"
+      description: "usuario"
+      operationId: "getUserInfo"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "USER_GITHUB"
+        in: "path"
+        description: "user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Info success"
+          schema:
+            $ref: "#/definitions/UserInfo"
+
+        404:
+          description: "Bad"
+          schema:
+            $ref: '#/definitions/Fault'
+
+  /{USER_GITHUB}/repos:
+    get:
+      tags:
+      - "basicUserInfo"
+      summary: "repositorio usuario"
+      description: "repositorio"
+      operationId: "getRepoInfo"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "USER_GITHUB"
+        in: "path"
+        description: "user"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Info success"
+          schema:
+            $ref: "#/definitions/RepoInfo"
+
+        404:
+          description: "Bad"
+          schema:
+            $ref: '#/definitions/Fault'
+
+  /{USER_GITHUB}/starred:
+    get:
+      tags:
+      - "basicUserInfo"
+      summary: "repositorio usuario"
+      description: "repositorios mais visitados"
+      operationId: "getStarred"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "USER_GITHUB"
+        in: "path"
+        description: "user"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Info success"
+          schema:
+            $ref: "#/definitions/RepoInfo"
+
+        404:
+          description: "Bad"
+          schema:
+            $ref: '#/definitions/Fault'
+
+definitions:
+  UserInfo:
+    description: "User Info"
+    type: "object"
+    properties:
+      id:
+        description: "id user"
+        type: "integer"
+        format: "int64"
+      avatar_url:
+        type: string
+      repos_url:
+        type: string
+      starred_url:
+        type: string
+      name:
+        type: string
+      login:
+        type: string
+
+  RepoInfo:
+    description: "Repositorio infos"
+    type: "object"
+    properties:
+      name:
+        type: string
+      full_name:
+        type: string
+      html_url:
+        type: string
+
+  Fault:
+    type: "object"
+    properties:
+      message:
+        type: string
+      dataOcorrencia:
+        type: string
+
+externalDocs:
+  description: "Para mais informações"
+  url: "https://developer.github.com/v3/"

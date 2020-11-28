@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/ng-swagger-gen/ng-swagger-gen-schema.json",
+  "swagger": "src/app/services/apidescriptor/github-api.yaml",
+  "includeTags": [
+    "basicUserInfo"
+  ],
+  "output": "./src/app/services/api-gen",
+  "config": "ng-swagger.json",
+  "ignoreUnusedModels": false,
+  "minParamsForContainer": 2,
+  "defaultTag": "DefaultTag",
+  "removeStaleFiles": true,
+  "modelIndex": true,
+  "serviceIndex": true,
+  "apiModule": true
+}

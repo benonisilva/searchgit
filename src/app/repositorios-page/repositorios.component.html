@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="voltar">
+    <button mat-fab [routerLink]="['/search']" >
+        <mat-icon >arrow_back</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="data$ | async as repos">
+    <mat-list role="list" class="repo-list">
+      <mat-list-item role="listitem" *ngFor="let repo of repos.repos">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Nome Completo</mat-card-title>
+            <mat-card-subtitle>{{repo.full_name}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="card-text-content">
+              {{repo.name}}
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+</div>
